@@ -1,0 +1,23 @@
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: liveness-pod2
+
+spec:
+  containers:
+  - name: liveness
+    image: debian:11.2    
+
+    args:
+    - /bin/bash
+    - -c
+    - touch /tmp/liveness; sleep infinity
+
+    livenessProbe:
+      exec:
+        command:
+        - ls
+        - -l
+        - /tmp/liveness
